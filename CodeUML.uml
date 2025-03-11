@@ -1,0 +1,68 @@
+@startuml
+class Paciente {
+   - ci: String
+   - nombre: String
+   -apellidos: String
+   - fechaDeNacimiento: LocalDate
+   - sexo: char
+   - peso: double
+   - estatura: double
+   -imagenes: List<Imagen>
+   -enfermedades: List<Enfermedad>
+   +Paciente()
+   +Paciente(ci : String, nombre : String, apellidos : String, fechaDeNacimiento : Date, sexo : char, peso : double, estatura : double)
+   + getCi(): String
+   + getNombre(): String
+   +getApelidos() : String
+   +getSexo(): char
+   +getPeso(): double
+   +getEstatura(): double
+   +getImagenes(): List<Imagen>
+   +getEnfermedades(): List<Enfermedad>
+   + agregarImagen(Imagen: img): void
+   +agregarEnfermedad(Enfermedad: enf): void
+   +dimeDatosPaciente(): String
+}
+ 
+class Imagen {
+   - nombreArchivo: String
+   - fechaDeToma: LocalDate
+   - tipoImagen: String
+   - comentariosDoc: String
+   +Imagen()
+   +Imagen(nombreArchivo : String, fechaDeToma : LocalDate, tipoImagen : String, comentariosDoc :                 String)
+   +getNombreArchivo(): String
+   +getFechaDeToma(): LocalDate
+   +getTipoImagen(): String
+   +getComentariosDoc(): String
+   + dameInfoImg(): String
+}
+ 
+class Enfermedad {
+   - nombreEnfermedad: String
+   - fechaEnfermedad: LocalDate
+   - tratamiento: String
+   +Enfermedad()
+   +Enfermedad(nombreEnfermedad : String, fechaEnfermedad : String, tratamiento : String)
+   +getNombreEnfermedad(): String
+   +getFechaEnfermedad(): String
+   +getTratamiento(): String
+   +dameInfoEnf(): String
+}
+ 
+class Hospital {
+   -paciente : List<Paciente>
+   +buscarPaciente(ci : String) : Paciente
+   +dimeCIPacientesMayorEstatura() : List<String>
+   +contarPacientesFConDengue() : int
+   +organizarPacientesPorNombre() : List<Paciente>
+   +ordenarPacientesPorPeso() : List<Paciente>
+   +agregarPaciente(p : Paciente) : void
+   +eliminarPaciente(ci : String) : void
+   +modificarPaciente(p : Paciente) : void
+}
+ 
+Paciente 1 --* Imagen
+Paciente 1 --* Enfermedad
+Hospital 1 --* Paciente
+@enduml
